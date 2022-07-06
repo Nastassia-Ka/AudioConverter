@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, reverse
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from .models import *
 
-menu = ['О сайте', 'Кабинет пользователя', 'Войти']
+menu = {'О сайте': '/about', 'Кабинет пользователя' : '/user', 'Войти': None}
 
 def home_page(request):
     return render(request, 'AudioApp/home.html', {'menu': menu, 'title': 'Конвертер аудио'})
