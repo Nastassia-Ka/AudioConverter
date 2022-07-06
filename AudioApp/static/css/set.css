@@ -1,0 +1,22 @@
+
+.blue {
+	color: blue;
+	font-size: 16px;
+	font-style : italic;
+}
+
+.red {
+	color: red;
+	font-size: 16px;
+	font-style : normal;
+}
+.right{
+        text-align:right;
+         }
+.left{
+        text-align:left;
+         }
+.center{
+        text-align:center;
+         }
+

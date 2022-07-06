@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = 'stylesheet'  href="{% static 'css/styles.css' %}">
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/png" />
+
+</head>
+<body>
+<table class=".table" border=0 cellpadding="0" cellspacing="0">
+<tr><td valign=top>
+{% block mainmenu %}
+<div class=".dropdown-header">
+<ul>
+    {% for m in menu %}
+    <li> {{m}} </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock mainmenu %}
+
+{% block contant %}
+<h1>Онлайн конвертер аудио</h1>
+<h2>Сконвертируйте онлайн аудиофайлы любого формата</h2>
+{% endblock %}
+
+</td></tr></table>
+
+</body>
+</html>
+
