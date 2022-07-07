@@ -1,14 +1,17 @@
 <!DOCTYPE html>
+{% load bootstrap4 %}
 {% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel = 'stylesheet'  href="{% static 'css/styles.css' %}">
+    {% bootstrap_css %}
+    <link rel = 'stylesheet' type="text/css" href="{% static 'css/styles.css' %}">
     <title>{{ title }}</title>
-    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/png" />
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/png"/>
+    {% bootstrap_javascript jquery="slim" %}
 
 </head>
-<body>
+<body class="container-fluid">
 <table class=".table" border=0 cellpadding="0" cellspacing="0">
 <tr><td valign=top>
 {% block mainmenu %}
