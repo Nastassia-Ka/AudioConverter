@@ -9,9 +9,11 @@
 }
 
 .table-page tr {height: 100%;}
+
 .header {
-   background: #3F4137;
-   height: 60px;
+    background: #3F4137;
+    height: 60px;
+}
 
 .logo {
    background: url('../images/logo.png') no-repeat 10px 5px;
@@ -40,10 +42,11 @@ ul.mainmenu li a {
    text-decoration: none;
 }
 ul.mainmenu li a:hover {
-   color: #FDA83D;
+    color: #FDA83D;
+}
 
-body{
-    background-image:url(../images/fon1.jpg);
+.body{
+    background-image:url(../images/fon2.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -70,3 +73,13 @@ body{
         text-align:center;
          }
 
+html {
+  background-image: url(images/fon1.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

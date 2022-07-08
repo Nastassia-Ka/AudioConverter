@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render, reverse
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 
 from .forms import UserAut, UserReg, DelData
-from utils.app_utils import saveuserdata, viewuserdata, resultsize, deluserdata
+from .utils.app_utils import saveuserdata, viewuserdata, resultsize, deluserdata
 from .models import *
 
 menu = [{'title': 'О сайте', 'url_name': 'about'},
