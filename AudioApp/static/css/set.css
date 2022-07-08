@@ -1,7 +1,5 @@
-.ul#menu {
 
-    display:inline-block; /* расположить пункты горизонтально */
-    }
+
 .table-page {
    width: 100%;
    height: 100%;
@@ -12,7 +10,7 @@
 
 .header {
     background: #3F4137;
-    height: 60px;
+    height: 70px;
 }
 
 .logo {
@@ -26,7 +24,7 @@ ul.mainmenu {
    margin: 0;
    padding: 0;
    height: 60px;
-   color: #fdc073;
+   color: #de682c;
    font-size: 20px;
    overflow: hidden;
 }
@@ -43,6 +41,7 @@ ul.mainmenu li a {
 }
 ul.mainmenu li a:hover {
     color: #FDA83D;
+    transform: scale(1.05);
 }
 
 .body{
@@ -73,8 +72,8 @@ ul.mainmenu li a:hover {
         text-align:center;
          }
 
-html {
-  background-image: url(images/fon1.jpg);
+
+body {background-image: url(images/fon1.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
