@@ -10,4 +10,5 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('deletion/', deletion_page, name='deletion page'),
     path('login/', login, name='login'),
+    path('login/', login, name='login'),
 ]

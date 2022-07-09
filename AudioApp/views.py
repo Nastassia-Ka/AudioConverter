@@ -6,21 +6,18 @@ from .forms import *
 from .models import *
 from .utils.app_utils import handle_uploaded_file
 
-menu = [{'title': 'О сайте', 'url_name': 'about'},
-        {'title': 'Кабинет пользователя', 'url_name': 'user_account'},
-        {'title': 'Войти', 'url_name': 'login'},
-        ]
 
 def home_page(request):
     """Домашняя страница"""
     if request.method == 'POST':
-        form = AudioForm(request.POST, request.FILES or None)
+        form = AudioForm(request.POST, request.FILES or None)  # Привязка загруженных файлов к форме
         if form.is_valid():
-            form.save()
-            return HttpResponse('successfully uploaded')
+            # handle_uploaded_file(request.FILES['file'])  ## Нужна, если делаешь через модели
+            form.save()  # Загрузка в директорию ./media/audio_files
+            return HttpResponseRedirect('/success/url/')
     else:
         form = AudioForm()
-    return render(request, 'AudioApp/home.html', {'menu': menu, 'forms': form})
+    return render(request, 'AudioApp/home.html', {'form': form})
 
 
 def user_account(request):

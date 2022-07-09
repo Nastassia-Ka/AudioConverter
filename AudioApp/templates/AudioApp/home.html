@@ -5,14 +5,14 @@
 {% block content %}
 <div class="features">
     <center><h1>Онлайн конвертер аудио</h1></center>
-    <center><p>Сконвертируйте онлайн аудиофайлы любого формата</p></center>
+    <center><p>Сконвертируйте онлайн аудиофайлы любого формата, представленных ниже</p></center>
+    <center><p>Конвертируетмые форматы: .mp3, .wav, .ac3, .asf, .flak, .mp4, .mov, .ogg</p></center>
     <form action="" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
-        <center><button class="btn btn-warning">Загрузить файл</button><br></center>
+        <center>{{ form }}<button name='upload' class="btn btn-warning">Загрузить файл</button><br></center>
     </form>
     <br>
-    <center><button class="btn btn-warning">Конвертировать</button></center>
+    <center><button name='convert' class="btn btn-danger">Конвертировать</button></center>
 </div>
 {% endblock %}
 

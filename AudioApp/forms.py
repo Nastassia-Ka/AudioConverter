@@ -5,30 +5,24 @@ from django.core.exceptions import ValidationError
 from AudioApp.models import *
 
 
-class UserSongForm(forms.ModelForm):
-    # Add some custom validation to our file field
+class AudioForm(forms.ModelForm):
     def clean_audio_file(self, some_lib=None):
         file = self.cleaned_data.get('audio_file', False)
         if file:
-            if file._size > 4 * 1024 * 1024:
-                raise ValidationError("Audio file too large ( > 4mb )")
-            if not file.content - type in ["audio/mpeg", "audio/..."]:
-                raise ValidationError("Content-Type is not mpeg")
+            if file.size > 10 * 1024 * 1024:
+                raise ValidationError("Файл слишком большой ( > 10mb )")  #Нужно ли?
+            # if not file.content - type in ["audio/mpeg","audio/..."]:
+            #     raise ValidationError("Content-Type is not mpeg")  ## - не понимаю что это
             if not os.path.splitext(file.name)[1] in [".mp3", ".wav", '.ac3', '.asf', '.flak', '.mp4', '.mov', '.ogg']:
-                raise ValidationError("Doesn't have proper extension")
-            # Here we need to now to read the file and see if it actually
-            # a valid audio file. I don't know what the best library is to
-            # to do this
-            if not some_lib.is_audio(file.content):
-                raise ValidationError("Not a valid audio file")
+                raise ValidationError("Выберите другой формат файла")
+            # if not some_lib.is_audio(file.content):
+            #     raise ValidationError("Недействительный аудиофайл")  ## Тоже хз что и зачем
             return file
         else:
             raise ValidationError("Couldn't read uploaded file")
-
-class AudioForm(forms.ModelForm):
     class Meta:
         model = AudioStore
-        fields = ['record']
+        fields = ['audio_file']
 
 
 
