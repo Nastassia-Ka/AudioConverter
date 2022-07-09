@@ -1,3 +1,15 @@
-{% extends 'templates/loyout.html' %}
+{% extends 'AudioApp/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Онлайн конвертер аудио</h1>
+    <p>Сконвертируйте онлайн аудиофайлы любого формата</p>
+    <button class="btn btn-warning">Загрузить файл</button>
+    <button class="btn btn-warning">Конвертировать</button>
+</div>
+{% endblock %}
 
 
+# Добавить список форматов и переход на кнопку конвертировать
