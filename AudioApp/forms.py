@@ -2,6 +2,7 @@ import os
 
 from django import forms
 from django.core.exceptions import ValidationError
+from AudioApp.models import *
 
 
 class UserSongForm(forms.ModelForm):
@@ -23,4 +24,11 @@ class UserSongForm(forms.ModelForm):
             return file
         else:
             raise ValidationError("Couldn't read uploaded file")
+
+class AudioForm(forms.ModelForm):
+    class Meta:
+        model = AudioStore
+        fields = ['record']
+
+
 

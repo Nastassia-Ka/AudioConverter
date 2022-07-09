@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
 
-from .forms import UserSongForm
+from .forms import *
 from .models import *
 from .utils.app_utils import handle_uploaded_file
 
@@ -13,7 +13,14 @@ menu = [{'title': 'О сайте', 'url_name': 'about'},
 
 def home_page(request):
     """Домашняя страница"""
-    return render(request, 'AudioApp/home.html', {'menu': menu})
+    if request.method == 'POST':
+        form = AudioForm(request.POST, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('successfully uploaded')
+    else:
+        form = AudioForm()
+    return render(request, 'AudioApp/home.html', {'menu': menu, 'forms': form})
 
 
 def user_account(request):
@@ -40,3 +47,4 @@ def login(request):
 #     else:
 #         form = UploadFileForm()
 #     return render_to_response('upload.html', {'form': form})
+
