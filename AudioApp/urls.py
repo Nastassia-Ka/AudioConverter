@@ -5,7 +5,7 @@ from . import views
 from AudioConverter import settings
 
 urlpatterns = [
-    path('', home_page, name='home'),
+    path('', upload_file, name='home'),
     path('user/', user_account, name='user_account'),
     path('about/', about, name='about'),
     path('deletion/', deletion_page, name='deletion page'),

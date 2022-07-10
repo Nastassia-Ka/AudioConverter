@@ -6,10 +6,13 @@
 <div class="features">
     <center><h1>Онлайн конвертер аудио</h1></center>
     <center><p>Сконвертируйте онлайн аудиофайлы любого формата, представленных ниже</p></center>
+    <br>
+    <br>
+    <br>
     <center><p>Конвертируетмые форматы: .mp3, .wav, .ac3, .asf, .flak, .mp4, .mov, .ogg</p></center>
     <form action="" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
-        <center>{{ form }}<button name='upload' class="btn btn-warning">Загрузить файл</button><br></center>
+        <center>{{ form.as_p }}<button type='submit' name='upload' class="btn btn-warning">Загрузить файл</button><br></center>
     </form>
     <br>
     <center><button name='convert' class="btn btn-danger">Конвертировать</button></center>
