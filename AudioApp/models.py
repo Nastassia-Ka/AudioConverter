@@ -6,7 +6,6 @@ class UserSong(models.Model):
     title = models.CharField(max_length=100)
     audio_file = models.FileField(upload_to='audio_files/')
 
-
     def __str__(self):
         return str(self.audio_file) + str(self.title)
 

@@ -45,7 +45,7 @@ class AudioConverter():
 
 
     @classmethod
-    def convert(cls,pathsound :str, format :str, login :str = 'admin'):
+    def convert(cls, pathsound :str, format :str, login :str = ''):
         """Конвертирует в треки в указанный формат."""
         # Проверка указанного формата
         if format.lower()  not in AudioConverter.formats:
@@ -87,11 +87,11 @@ class AudioConverter():
         orig = data_dict['trek_orig']
         convert = data_dict['trek_convert']
         date = data_dict['date']
-        print(login,orig,convert,date)
+        # print(login,orig,convert,date)
         ex = TrackData(login=login, original_tracks=orig, convertable_tracks=convert, date=date)
         ex.save()
-        for item in TrackData.objects.all():
-            print(item.login)
+        # for item in TrackData.objects.all():
+        #     print(item.login)
 
 
 

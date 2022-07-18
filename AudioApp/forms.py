@@ -32,7 +32,7 @@ class UploadFileForm(forms.ModelForm):
                 raise ValidationError("Audio file too large ( > 10mb )")
             # if not file.content - type in ["audio/mpeg", "audio/..."]:
             #     raise ValidationError("Content-Type is not mpeg")
-            if not os.path.splitext(file.name)[1] in [".mp3", ".wav"]:
+            if not os.path.splitext(file.name)[1] in [".mp3", ".wav", '.ac3','.asf', '.Flac', '.mp4', '.mov', ".ogg"]:
                 raise ValidationError("Doesn't have proper extension")
             # Here we need to now to read the file and see if it actually
             # a valid audio file. I don't know what the best library is to

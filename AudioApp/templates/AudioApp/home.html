@@ -13,12 +13,13 @@
     <form action="" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
         <center>{{ form.as_p }}<button type='submit' name='upload' class="btn btn-warning">Загрузить файл</button><br></center>
-    </form>
     <br>
-    <center><button name='convert' class="btn btn-danger">Конвертировать</button></center>
+    <p>Click on the link to download it:<p>
+        <center><output type="file" name="{{ conv_song }}"></output><button name='convert' class="btn btn-danger">Конвертировать</button></center>
+{#        <audio><source src="{{ conv_song }}" type=audio/wav></audio>#}
+    </form>
 </div>
 {% endblock %}
-
-
+{#<a href="" {{ conv_song }} download></a>#}
 
 # Добавить список форматов и переход на кнопку конвертировать
