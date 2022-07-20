@@ -74,6 +74,8 @@ class AudioConverter():
             "trek_orig": trek_orig,
             "trek_convert": f"{user_dirs['user_convert']}/{trek_name}.{trek_frmt}",
             "date": date,
+            "name": trek_name,
+            "format": trek_frmt,
                  }
         return result
 

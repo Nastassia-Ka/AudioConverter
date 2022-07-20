@@ -18,7 +18,10 @@ def upload_file(request):
             trek_dict = AudioConverter.convert(f'AudioApp/media/audio_files/{text}', format='wav', login='Nastya')
             AudioConverter.write_db(trek_dict)
             conv_song = trek_dict['trek_convert']
-            return render(request, 'AudioApp/home.html', {'conv_song': conv_song})
+            name = trek_dict['name']
+            format = trek_dict['format']
+            print(conv_song)
+            return render(request, 'AudioApp/home.html', {'conv_song': conv_song, 'name': name, 'format': format})
     else:
         form = UploadFileForm()
     return render(request, 'AudioApp/home.html', {'form': form})

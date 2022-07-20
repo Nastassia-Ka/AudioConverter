@@ -57,7 +57,7 @@ ROOT_URLCONF = 'AudioConverter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['AudioApp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
