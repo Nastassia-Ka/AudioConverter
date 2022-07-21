@@ -1,2 +1,8 @@
 .DS_Store
 **/__pycache__
+/env/
+/system_path_backup/
+/AudioApp/media/audio_files/convertible_tracks/
+/AudioApp/media/audio_files/convertible_tracks/Admin/
+/AudioApp/media/audio_files/convertible_tracks/Nastya/
+/AudioApp/media/audio_files/original_tracks/
