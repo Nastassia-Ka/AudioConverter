@@ -6,22 +6,35 @@ from django.template.loader import render_to_string
 from .forms import *
 from .models import *
 from .utils.app_utils import handle_uploaded_file
-from .audioconvert import AudioConverter
+from .audiohandler.audio import AudioConverter
+from .utils.database import write_database
+
+#Converter setiings
+settings = {
+        'move': True, # Перемещать (не копировать) файлы в папку конвертированных
+        'write_db': False, # Использовать стандартную базу данных конвертора
+        'db_path': '', # Путь к стандартной базе данных конвертора
+        'storage_path': 'AudioApp/media/audio_files/', # Путь, где будут храниться конвертированные файлы
+        }
+#object converter
+converter = AudioConverter(setting_dict=settings)
+
 
 
 def upload_file(request):
+    """Загрузка аудио и его конвретирвоание."""
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             text = str(form.files['audio_file']).replace(' ', '_')
-            trek_dict = AudioConverter.convert(f'AudioApp/media/audio_files/{text}', format='wav', login='Nastya')
-            AudioConverter.write_db(trek_dict)
-            conv_song = trek_dict['trek_convert']
-            name = trek_dict['name']
-            format = trek_dict['format']
-            print(conv_song)
-            return render(request, 'AudioApp/home.html', {'conv_song': conv_song, 'name': name, 'format': format})
+            # Конвертирование аудиофайла и сохранение информации о нем в базу данных
+            trek_dict : dict = converter.convert(f'AudioApp/media/audio_files/{text}', frmt='wav', name='Admin')
+            print(trek_dict)
+            flag :bool = write_database(trek_dict)
+
+
+            return redirect('home')
     else:
         form = UploadFileForm()
     return render(request, 'AudioApp/home.html', {'form': form})
