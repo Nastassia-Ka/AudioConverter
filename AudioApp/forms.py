@@ -4,7 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from AudioApp.models import *
 
-#
+
 class UploadFileForm(forms.ModelForm):
 #     # Add some custom validation to our file field
 #     def __init__(
@@ -25,6 +25,7 @@ class UploadFileForm(forms.ModelForm):
 #                          use_required_attribute, renderer)
 #         self.file = None
 
+
     def clean_audio_file(self):
         file = self.cleaned_data.get('audio_file', False)
         if file:
@@ -44,3 +45,5 @@ class UploadFileForm(forms.ModelForm):
     class Meta:
         model = UserSong
         fields = ['audio_file']
+
+
