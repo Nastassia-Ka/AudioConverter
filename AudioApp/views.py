@@ -8,13 +8,14 @@ from .models import *
 from .utils.app_utils import handle_uploaded_file
 from .audiohandler.audio import AudioConverter
 from .utils.database import write_database
+from AudioConverter.settings import STATIC_URL # файлы статики
 
 #Converter setiings
 settings = {
         'move': True, # Перемещать (не копировать) файлы в папку конвертированных
         'write_db': False, # Использовать стандартную базу данных конвертора
         'db_path': '', # Путь к стандартной базе данных конвертора
-        'storage_path': 'AudioApp/media/audio_files/', # Путь, где будут храниться конвертированные файлы
+        'storage_path': f'AudioApp{STATIC_URL}', # Путь, где будут храниться конвертированные файлы
         }
 #object converter
 converter = AudioConverter(setting_dict=settings)
@@ -27,14 +28,24 @@ def upload_file(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            text = str(form.files['audio_file']).replace(' ', '_')
+            text :str= str(form.files['audio_file']).replace(' ', '_')
             # Конвертирование аудиофайла и сохранение информации о нем в базу данных
             trek_dict : dict = converter.convert(f'AudioApp/media/audio_files/{text}', frmt='wav', name='Admin')
-            print(trek_dict)
-            flag :bool = write_database(trek_dict)
+            flag: bool = write_database(trek_dict)
 
+            # Инфа о файле в шаблон
+            trek_name :str= trek_dict['trek_name']
+            trek_format :str = trek_dict['format']
+            audio :str= trek_dict['path_convert'].replace('AudioApp/static/', '')
+            context = {'form': form,
+                       'trek_name': trek_name,
+                       'format': trek_format,
+                        'audio':audio,
+                       }
 
-            return redirect('home')
+            print(audio)
+            return render(request,  'AudioApp/home.html', context=context)
+            # return redirect('home')
     else:
         form = UploadFileForm()
     return render(request, 'AudioApp/home.html', {'form': form})

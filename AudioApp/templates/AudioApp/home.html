@@ -1,5 +1,5 @@
 {% extends 'AudioApp/layout.html' %}
-
+{% load static %}
 {% block title %}Главная страница{% endblock %}
 
 {% block content %}
@@ -20,8 +20,8 @@
 
 <div class="features">
     <center>
-    <p>Click on the link to download file: {{ name }}.{{ format }}</p>
-    <a href="/{{ conv_song }}" download>
+    <p>Click on the link to download file: {{ trek_name }}.{{ format }}</p>
+    <a href="{%static audio%}" download >
         <button name='convert' class="btn btn-danger">Скачать</button>
     </a>
     </center>
