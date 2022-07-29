@@ -3,7 +3,7 @@ import os
 from django import forms
 from django.core.exceptions import ValidationError
 from AudioApp.models import *
-
+from .audiohandler.audio import AudioConverter
 
 class UploadFileForm(forms.ModelForm):
 #     # Add some custom validation to our file field
@@ -46,4 +46,12 @@ class UploadFileForm(forms.ModelForm):
         model = UserSong
         fields = ['audio_file']
 
+
+class SelectFormatForm(forms.Form):
+    """Форма выбора формата конвертирования."""
+
+    converter_formats :list = AudioConverter.available_formats()
+    formats_tuple :tuple = tuple(zip(tuple(converter_formats),tuple(converter_formats)))
+
+    format :forms.Form = forms.ChoiceField(choices=formats_tuple)
 

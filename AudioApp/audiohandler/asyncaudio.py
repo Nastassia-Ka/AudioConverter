@@ -4,7 +4,7 @@ import shutil
 from datetime import datetime
 import subprocess
 
-from audiohandler.audio import AudioConverter
+from .audio import AudioConverter
 
 
 class AsyncAudioConverter(AudioConverter):
@@ -22,7 +22,7 @@ class AsyncAudioConverter(AudioConverter):
         # print("async.Конвертируем трек: ", pathsound)
         await asyncio.sleep(1 / 10000)
 
-        if frmt.lower() not in self.formats:
+        if frmt.lower() not in AsyncAudioConverter.formats:
             raise Exception("AudioConverter.convert 'Unknown format'")
 
         # Пути хранения треков
@@ -84,7 +84,7 @@ class AsyncAudioConverter(AudioConverter):
         print("Начало конвертирования: ", pathvideo)
         await asyncio.sleep(1/10000)
 
-        if frmt.lower() not in self.formats:
+        if frmt.lower() not in AsyncAudioConverter.formats:
             raise Exception("AudioConverter.convert 'Unknown format'")
 
         # Пути хранения треков

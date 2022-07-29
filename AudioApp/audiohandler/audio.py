@@ -18,11 +18,9 @@ class AudioConverter():
 
     number_converters = 0 # Количество объектов класса
     number_db = 0 # Количество баз данных
-
+    formats :list[str] = ['ac3', 'asf', 'flac', 'mp3', 'mp4', 'mov', "ogg", 'wav', ]  # '-AAC' '-DTS' '-wma'
     def __init__(self, setting_dict :dict = None):
         """Инициализация настроек конвертора."""
-
-        self.formats :list[str] = ['ac3', 'asf', 'Flac', 'mp3', 'mp4', 'mov', "ogg", 'wav', ]  # '-AAC' '-DTS' '-wma'
 
         self.storage_path :str = '' # путь к директории для хранения оригинальных и конвертируемых треков
         self.move :bool = False # перемещать оригинальные треки в директорию оригиналов
@@ -128,7 +126,7 @@ class AudioConverter():
     def convert(self, pathsound :str, frmt :str, name :str = '', )->dict :
         """Конвертирует аудио файл в указанный формат."""
 
-        if frmt.lower() not in self.formats:
+        if frmt.lower() not in AudioConverter.formats:
             raise Exception("AudioConverter.convert 'Unknown format'")
 
         # Пути хранения треков
@@ -170,10 +168,10 @@ class AudioConverter():
 
         return result
 
-
-    def available_formats(self) -> list:
+    @classmethod
+    def available_formats(cls) -> list:
         """Возвращает список доступных форматов для конвертирования."""
-        return self.formats
+        return AudioConverter.formats
 
 
     @classmethod
@@ -188,7 +186,7 @@ class AudioConverter():
     def extract_audio(self, pathvideo :str, frmt :str = 'mp3', name :str = '', ):
         """Извлекает аудио из видео файла."""
 
-        if frmt.lower() not in self.formats:
+        if frmt.lower() not in AudioConverter.formats:
             raise Exception("AudioConverter.convert 'Unknown format'")
 
         # Пути хранения треков
