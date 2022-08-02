@@ -12,7 +12,7 @@
     <center><p>Конвертируетмые форматы: .mp3, .wav, .ac3, .asf, .flak, .mp4, .mov, .ogg</p></center>
     <form action="" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{select}}
+        <center><h6 title="Выберите формат конвертирования">{{select}}</h6></center>
         <center>{{ form.as_p }} {{conv_song}}<button type='submit' name='upload' class="btn btn-warning">Загрузить файл</button><br></center>
 {#        <center><output type="file" name="{{ conv_song }}"></output><button name='convert' class="btn btn-danger">Конвертировать</button></center>#}
 {#        <audio><source src="{{ conv_song }}" type=audio/wav></audio>#}

@@ -1,13 +1,9 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, reverse
-from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
-from django.template.loader import render_to_string
+# from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
 
-from .forms import *
-from .models import *
-from .utils.app_utils import handle_uploaded_file
+from .forms import UploadFileForm, SelectFormatForm
 from .audiohandler.audio import AudioConverter
-from .audiohandler.asyncaudio import AsyncAudioConverter
 from .utils.database import write_database
 from AudioConverter.settings import STATIC_URL # файлы статики
 
@@ -24,6 +20,7 @@ converter = AudioConverter(setting_dict=settings)
 
 def upload_file(request):
     """Загрузка аудио и его конвретирвоание."""
+
     select = SelectFormatForm()
 
     if request.method == 'POST':
@@ -76,15 +73,4 @@ def login(request):
     return render(request, 'AudioApp/login.html')
 
 
-# def upload_file(request):
-#     if request.method == 'POST':
-#         form = UserSongForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             # If we are here, the above file validation has completed
-#             # so we can now write the file to disk
-#             handle_uploaded_file(request.FILES['file'])
-#             return HttpResponseRedirect('/success/url/')
-#     else:
-#         form = UploadFileForm()
-#     return render_to_response('upload.html', {'form': form})
 

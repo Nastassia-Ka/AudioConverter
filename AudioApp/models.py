@@ -1,8 +1,8 @@
-
 from django.db import models
 
 
 class UserSong(models.Model):
+    """Модель для загрузки песни"""
     title = models.CharField(max_length=100)
     audio_file = models.FileField(upload_to='audio_files/')
 
