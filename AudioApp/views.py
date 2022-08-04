@@ -30,14 +30,13 @@ def upload_file(request):
 
             form.save()
             text :str= str(form.files['audio_file']).replace(' ', '_')
-            print(text)
             frmt = request.POST.get('format')
 
             # Конвертирование аудиофайла и сохранение информации о нем в базу данных
-            trek_dict : dict = converter.convert(f'AudioApp/media/audio_files/{text}', frmt=frmt, name='Admin')
+            trek_dict : dict = converter.convert(f'AudioApp/media/audio_files/{text}', frmt=frmt, name='Guest')
             flag: bool = write_database(trek_dict)
 
-            # Инфа о файле в шаблон
+            # Инфа о файле в home.html
             trek_name :str= trek_dict['trek_name']
             trek_format :str = trek_dict['format']
             audio :str= trek_dict['path_convert'].replace('AudioApp/static/', '')
@@ -45,7 +44,7 @@ def upload_file(request):
             context :dict = {'form': form,
                        'trek_name': trek_name,
                        'format': trek_format,
-                        'audio':audio,
+                       'audio':audio,
                        'select': select,
                        }
 
