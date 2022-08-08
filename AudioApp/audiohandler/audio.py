@@ -2,7 +2,7 @@
 from .codecsetting import connect_ffmpeg, ffmepgpath
 connect_ffmpeg(pathffmpeg=ffmepgpath, backup=True, forcebly=False)
 
-# Импорт класса для создания базы данных
+# Импорт класс для создания базы данных
 from .database.audioDB import AudioDB
 
 from pydub import AudioSegment
@@ -18,7 +18,8 @@ class AudioConverter():
 
     number_converters = 0 # Количество объектов класса
     number_db = 0 # Количество баз данных
-    formats :list[str] = ['ac3', 'asf', 'flac', 'mp3', 'mp4', 'mov', "ogg", 'wav', ]  # '-AAC' '-DTS' '-wma'
+    formats: list[str] = ['ac3', 'asf', 'Flac', 'mp3', 'mp4', 'mov', "ogg", 'wav', ]  # '-AAC' '-DTS' '-wma'
+
     def __init__(self, setting_dict :dict = None):
         """Инициализация настроек конвертора."""
 
@@ -44,10 +45,11 @@ class AudioConverter():
     def install_settings(self, sett_dict :dict) ->None:
         """Установка настроек конвертора."""
         # Разбор словря с настройками и установка их в класс
+
         if isinstance(sett_dict, dict):
 
             # Установка пути к директории для хранения треков, если он указан и существует
-            path  = sett_dict.get('storage_path', '')
+            path = sett_dict.get('storage_path', '')
             if os.path.exists(path):
                 self.storage_path = path
 
@@ -119,7 +121,6 @@ class AudioConverter():
 
         # Возвращение словаря с путями директорий для хранения треков
         result = {'name': name, 'user_dir_orig': user_dir_original, 'user_dir_convert': user_dir_convert}
-
         return result
 
 
@@ -158,7 +159,7 @@ class AudioConverter():
             'path_original': trek_orig, # Путь к оригинальному файлу
             'path_convert': f"{user_dirs['user_dir_convert']}/{trek_name}.{trek_frmt}", # Путь к конвертированному файлу
             'format': trek_frmt, # Формат конвертированного файла
-            'date': str(date),  # Дата и время конвертирования
+            'date': date,  # Дата и время конвертирования
             'move': self.move # Флаг перемещения исходного файла в директорию оригиналов
                  }
 
@@ -168,20 +169,7 @@ class AudioConverter():
 
         return result
 
-    @classmethod
-    def available_formats(cls) -> list:
-        """Возвращает список доступных форматов для конвертирования."""
-        return AudioConverter.formats
 
-
-    @classmethod
-    def show_objects(cls):
-        result = {
-            'AudioConverter': AudioConverter.number_converters,
-            'AudioDataBase': AudioConverter.number_db
-                }
-
-        return result
 
     def extract_audio(self, pathvideo :str, frmt :str = 'mp3', name :str = '', ):
         """Извлекает аудио из видео файла."""
@@ -193,7 +181,6 @@ class AudioConverter():
         user_dirs :dict = self.create_user_dir(name=name)
         video_name: str = pathvideo[pathvideo.rfind("/") + 1:pathvideo.rfind(".")].replace(" ", "_")
         trek_frmt: str = frmt.lower()
-        print(user_dirs, video_name, trek_frmt)
 
         subprocess.call(["ffmpeg", "-y", "-i", pathvideo, f"{user_dirs['user_dir_convert']}/{video_name}.{frmt}"],
                         stdout=subprocess.DEVNULL,
@@ -219,12 +206,28 @@ class AudioConverter():
             'path_original': trek_orig, # Путь к оригинальному файлу
             'path_convert': f"{user_dirs['user_dir_convert']}/{video_name}.{trek_frmt}", # Путь к конвертированному файлу
             'format': trek_frmt, # Формат конвертированного файла
-            'date': str(date),  # Дата и время конвертирования
+            'date': date,  # Дата и время конвертирования
             'move': self.move # Флаг перемещения исходного файла в директорию оригиналов
                  }
 
         # Запись в бд информации о конвертированном файле
         if self.wirte_db == True:
             self.db.insert_audio(result)
+
+        return result
+
+
+    @classmethod
+    def available_formats(self) -> list:
+        """Возвращает список доступных форматов для конвертирования."""
+        return AudioConverter.formats
+
+
+    @classmethod
+    def show_objects(cls):
+        result = {
+            'AudioConverter': AudioConverter.number_converters,
+            'AudioDataBase': AudioConverter.number_db
+                }
 
         return result
