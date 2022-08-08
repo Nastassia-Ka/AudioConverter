@@ -18,7 +18,7 @@ class AudioData(models.Model):
     original_track = models.CharField(max_length=100, verbose_name='Оригинальный трек')
     convertable_track = models.CharField(max_length=100, verbose_name='Сконвертированный трек')
     convertable_format = models.CharField(max_length=100, verbose_name='Формат сконвертированного трека')
-    date = models.CharField(max_length=100, verbose_name='Дата конвертации')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата конвертации')
 
     def __str__(self):
         return str(self.login)
