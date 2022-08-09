@@ -22,10 +22,16 @@
 
 <div class="features">
     <center>
-    <p>Click on the link to download file: {{ trek_name }}.{{ format }}</p>
-    <a href="{%static audio%}" download >
+    {% if trek_name %}
+        <p>Click on the link to download file: {{ trek_name }}.{{ format }}</p>
+        <a href="{%static audio%}" download >
         <button name='convert' class="btn btn-danger">Скачать</button>
-    </a>
+        </a>
+     {% else %}
+        <p>Файл не загружен</p>
+        <button name='convert' class="btn btn-danger" disabled>Скачать</button>
+    {% endif %}
+
     </center>
 </div>
 
