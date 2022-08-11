@@ -60,8 +60,12 @@ def upload_file(request):
         return render(request, 'AudioApp/home.html',context=context)
 
 
+
 def user_account(request):
     return render(request, 'AudioApp/user.html')
+
+def user_reg(request):
+    return render(request, 'AudioApp/registration.html')
 
 def about(request):
     return render(request, 'AudioApp/about.html')
