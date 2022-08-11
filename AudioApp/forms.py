@@ -2,6 +2,7 @@ import os
 
 from django import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 from AudioApp.models import UserSong
 from .audiohandler.audio import AudioConverter
@@ -37,4 +38,11 @@ class SelectFormatForm(forms.Form):
     formats_tuple :tuple = tuple(zip(tuple(converter_formats),tuple(converter_formats)))
 
     format :forms.Form = forms.ChoiceField(choices=formats_tuple)
+
+    def show_formats(self):
+        formats =", ".join(SelectFormatForm.converter_formats)
+        formats += "."
+        return formats
+
+
 
