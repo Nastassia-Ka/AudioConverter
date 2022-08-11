@@ -1,11 +1,23 @@
 {% extends 'AudioApp/layout.html' %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Авторизация  и регистрация {% endblock %}
 
 {% block content %}
 <div class="features">
-    <h1></h1>
-    <p></p>
-    <button class="btn btn-warning">Удалить файл</button>
+    <br>
+    <center>
+    <p>
+        Авторизованым пользователям доступно сохранение оригинальных и конвертированых аудофайлов в личном кабинете.
+        Файлы доступны для скачивания. Так же доступна опция извлечения звука из видео.
+        Используйте кнопки ниже для авторизации и регистрации.
+    </p>
+        <br>
+        <br>
+    <p>
+    <input type="button" class="btn btn-warning" value="Войти" onclick='location.href="{% url "login" %}"'>
+    <input type="button" class="btn btn-warning" value="Регистрация" onclick='location.href="{% url "user_reg" %}"'>
+    <input type="button" class="btn btn-warning" value="Остаться гостем" onclick='location.href="{% url "home" %}"'>
+    </center>
+    </p>
 </div>
 {% endblock %}
