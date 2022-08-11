@@ -1,13 +1,11 @@
-<!DOCTYPE html>
+{% extends 'AudioApp/layout.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
+{% block title %}Cтраница авторизации{% endblock %}
 
-<h1 class="mark">Регистрация</h1>
-<p>Здесь будет текст</p>
-</body>
-</html>
+{% block content %}
+ <form action="." method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Войти"></p>
+    </form>
+{% endblock %}
